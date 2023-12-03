@@ -1,0 +1,2 @@
+https://blog.avada.io/css/book-effects#pure-javascript-book-effect
+the design #7 is chosen for index2 design
