@@ -1,4 +1,10 @@
-/* done until 04:30 */
+/* 
+    On the context of z-index:
+    the higher the value, the more backward that element is place.
+    thus, the cover which is the last page, has the highest z-index,
+    and the front cover, which is the first page, has the lowest z-index.
+    on that notion, the pages should get the value for their z-index.
+*/
 
 body {
     font-family: "Roboto", sans-serif;
@@ -21,6 +27,18 @@ input {
     perspective: 1500;
 }
 
+.introduction{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    height: 70vh;
+}
+.introduction p {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
 .cover, .back-cover {
     background-color: #a67a46;
     width: 100%;
@@ -34,9 +52,16 @@ input {
 
 .cover{
     position: absolute;
-    z-index: 4;
+    z-index: 98;
     transform-origin: center left;
     transition: transform 1s;
+}
+
+.cover img{
+    position: relative;
+    width: 128px;
+    height: 128px;
+    left: 40%;
 }
 
 .cover label{
@@ -52,7 +77,6 @@ input {
 
 .page {
     position: absolute;
-    z-index: 1;
     background-color: #f2e2c4;
     width: 97.5%;
     height: 95%;
@@ -67,8 +91,14 @@ input {
 .page img {
     width: 100%;
     height: 100%;
-    border-radius: 0 15px 15px 0;
+}
 
+.front-page img{
+    border-radius: 0 15px 15px 0;
+}
+
+.back-page img{
+    border-radius: 15px 0 0 15px;
 }
 
 .front-page{
@@ -77,6 +107,7 @@ input {
     height: 100%;
     backface-visibility: hidden;
     box-sizing: border-box;
+    border-radius: 0 15px 15px 0;
 }
 
 .back-page{
@@ -86,6 +117,8 @@ input {
     height: 100%;
     backface-visibility: hidden;
     z-index: 99;
+    background-color: #f2e2c4;
+    border-radius: 15px 0 0 15px;
 }
 
 .next, .prev{
@@ -103,12 +136,18 @@ input {
 }
 
 #page1 {
-    z-index: 3;
+    z-index: 5;
 }
 #page2 {
-    z-index: 2;
+    z-index: 4;
 }
 #page3 {
+    z-index: 3;
+}
+#page4 {
+    z-index: 2;
+}
+#page5 {
     z-index: 1;
 }
 
@@ -133,4 +172,12 @@ input {
 #checkbox-page3:checked ~ .book #page3 {
     transform: rotateY(-180deg);
     z-index: 4;
+}
+#checkbox-page4:checked ~ .book #page4 {
+    transform: rotateY(-180deg);
+    z-index: 5;
+}
+#checkbox-page5:checked ~ .book #page5 {
+    transform: rotateY(-180deg);
+    z-index: 6;
 }
