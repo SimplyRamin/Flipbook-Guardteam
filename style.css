@@ -54,7 +54,8 @@ input {
     position: absolute;
     z-index: 98;
     transform-origin: center left;
-    transition: transform 1s;
+    transition: transform 1s ease-in-out;
+    transform-style: preserve-3d;
 }
 
 .cover img{
@@ -86,6 +87,7 @@ input {
     transform-style: preserve-3d;
     transform: rotateY(0deg);
     transition-duration: 1.5s;
+    transition-timing-function: cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
 
 .page img {
@@ -156,9 +158,13 @@ input {
 }
 
 #checkbox-cover:checked ~ .book .cover {
-    transition: transform 1.5s, z-index 0.5s 0.5s;
+    transition: transform 1.5s, z-index 0.5s 0.5s ease-in-out;
     transform: rotateY(-180deg);
     z-index: 1;
+}
+
+#checkbox-cover:checked ~ .book .page {
+	box-shadow: 0 0 3px rgb(99, 98, 98);
 }
 
 #checkbox-page1:checked ~ .book #page1 {
