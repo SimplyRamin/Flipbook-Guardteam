@@ -1,0 +1,189 @@
+/* 
+    On the context of z-index:
+    the higher the value, the more backward that element is place.
+    thus, the cover which is the last page, has the highest z-index,
+    and the front cover, which is the first page, has the lowest z-index.
+    on that notion, the pages should get the value for their z-index.
+*/
+
+body {
+    font-family: "Roboto", sans-serif;
+    background-color: #0d0d0d;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+input {
+    display: none;
+}
+
+.book {
+    width: 75vh;
+    height: 75vh;
+    position: relative;
+    transition: transform 1s;
+    perspective: 1500;
+}
+
+.introduction{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    height: 70vh;
+}
+.introduction p {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.cover, .back-cover {
+    background-color: #a67a46;
+    width: 100%;
+    height: 100%;
+    border-radius: 0 15px 15px 0;
+    box-shadow: 0 0 5px rgb(41, 41, 41);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cover{
+    position: absolute;
+    z-index: 98;
+    transform-origin: center left;
+    transition: transform 1s ease-in-out;
+    transform-style: preserve-3d;
+}
+
+.cover img{
+    position: relative;
+    width: 128px;
+    height: 128px;
+    left: 40%;
+}
+
+.cover label{
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.back-cover{
+    position: relative;
+    z-index: -1;
+}
+
+.page {
+    position: absolute;
+    background-color: #f2e2c4;
+    width: 97.5%;
+    height: 95%;
+    border-radius: 0 15px 15px 0;
+    margin-top: 2.5%;
+    transform-origin: left;
+    transform-style: preserve-3d;
+    transform: rotateY(0deg);
+    transition-duration: 1.5s;
+    transition-timing-function: cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.page img {
+    width: 100%;
+    height: 100%;
+}
+
+.front-page img{
+    border-radius: 0 15px 15px 0;
+}
+
+.back-page img{
+    border-radius: 15px 0 0 15px;
+}
+
+.front-page{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    box-sizing: border-box;
+    border-radius: 0 15px 15px 0;
+}
+
+.back-page{
+    transform: rotateY(180deg);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    z-index: 99;
+    background-color: #f2e2c4;
+    border-radius: 15px 0 0 15px;
+}
+
+.next, .prev{
+    position: absolute;
+    bottom: 1rem;
+    cursor: pointer;
+}
+
+.next{
+    right: 1rem;
+}
+
+.prev{
+    left: 1rem;
+}
+
+#page1 {
+    z-index: 5;
+}
+#page2 {
+    z-index: 4;
+}
+#page3 {
+    z-index: 3;
+}
+#page4 {
+    z-index: 2;
+}
+#page5 {
+    z-index: 1;
+}
+
+#checkbox-cover:checked ~ .book{
+    transform: translateX(20vw);
+}
+
+#checkbox-cover:checked ~ .book .cover {
+    transition: transform 1.5s, z-index 0.5s 0.5s ease-in-out;
+    transform: rotateY(-180deg);
+    z-index: 1;
+}
+
+#checkbox-cover:checked ~ .book .page {
+	box-shadow: 0 0 3px rgb(99, 98, 98);
+}
+
+#checkbox-page1:checked ~ .book #page1 {
+    transform: rotateY(-180deg);
+    z-index: 2;
+}
+#checkbox-page2:checked ~ .book #page2 {
+    transform: rotateY(-180deg);
+    z-index: 3;
+}
+#checkbox-page3:checked ~ .book #page3 {
+    transform: rotateY(-180deg);
+    z-index: 4;
+}
+#checkbox-page4:checked ~ .book #page4 {
+    transform: rotateY(-180deg);
+    z-index: 5;
+}
+#checkbox-page5:checked ~ .book #page5 {
+    transform: rotateY(-180deg);
+    z-index: 6;
+}
